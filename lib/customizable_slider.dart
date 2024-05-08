@@ -8,7 +8,8 @@ class CustomizableSlider extends StatefulWidget {
   final List<Widget> pages;
   final List<Color>? backgroundColors;
   final Widget Function(double anim, List<Color> backgroundColors, int index, int currPage)? anim;
-  const CustomizableSlider({super.key, required this.pages, this.backgroundColors, this.anim});
+  final void Function(int idx)? onChange;
+  const CustomizableSlider({super.key, required this.pages, this.backgroundColors, this.anim, this.onChange});
 
   @override
   State<CustomizableSlider> createState() => _CustomizableSliderState();
@@ -46,16 +47,20 @@ class _CustomizableSliderState extends State<CustomizableSlider> with SingleTick
           double dist = (pos - currPage).abs();
 
           //animation speed
-          if (dist < 1) {
-            pos += (currPage - pos) / 10;
-          } else {
-            pos < currPage ? pos += 0.1 : pos -= 0.1;
-          }
+          // if (dist < 1) {
+          pos += (currPage - pos) / 15;
+          // } else {
+          //   pos < currPage ? pos += 0.15 : pos -= 0.15;
+          // }
 
           //snap
           if (dist < 0.001) {
             pos = currPage.toDouble();
             snap = false;
+
+            if (widget.onChange != null) {
+              widget.onChange!(currPage);
+            }
           }
         }
       }
