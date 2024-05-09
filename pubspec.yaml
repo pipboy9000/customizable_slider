@@ -1,6 +1,6 @@
-name: customizable_slider
+name: customizable_cards_slider
 description: "A Customizable cards slider widget"
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:

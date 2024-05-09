@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:customizable_slider/customizable_slider.dart';
+import 'package:customizable_cards_slider/customizable_cards_slider.dart';
 import 'package:example/moving_ball.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

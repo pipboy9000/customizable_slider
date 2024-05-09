@@ -1,4 +1,4 @@
-library customizable_slider;
+library customizable_cards_slider;
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
