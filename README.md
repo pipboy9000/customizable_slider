@@ -29,7 +29,7 @@ import  'package:customizable_slider/customizable_slider.dart';
 The `pages` parameter takes a  a list of widgets to display as pages. For this example we will use a basic text widget:
 ```dart
 CustomizableSlider(
-	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), 		Text("Page 3"), Text("Page 4"),
+	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), Text("Page 3"), Text("Page 4")],
 )
 ```
 ![enter image description here](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmQ4NzcxN2E5N2xwaGFnaGd0bHY4bTc3b210OHZmaHNjZHRybXNybSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Bq1YwznZmLhnif96TR/giphy.gif)
@@ -40,7 +40,7 @@ The slider will resize to fill the parent widget and center the page widget. The
 For smooth background color transitions you can provide the `backgroundColors` parameter with a list of `Color`. The length of `pages` should match the length of  `backgroundColors`
 ```dart
 CustomizableSlider(
-	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), 		Text("Page 3"), Text("Page 4")],
+	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), Text("Page 3"), Text("Page 4")],
 	backgroundColors: [
 		Colors.green,
 		Colors.cyan,
@@ -69,7 +69,7 @@ This function should return a widget and gets called during animation. It expose
 In this example we use the `anim` parameter to animate the size and color of the button. We are also using the `backgroundColors` parameter to color the button.
 ```dart
 CustomizableSlider(
-	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), 		Text("Page 3"), Text("Page 4")],
+	pages: const [Text("Page 0"), Text("Page 1"), Text("Page 2"), Text("Page 3"), Text("Page 4")],
 	backgroundColors: const [
 		Colors.green,
 		Colors.cyan,
@@ -90,13 +90,15 @@ CustomizableSlider(
 					shape: BoxShape.circle,
 					color: Color.lerp(backgroundColors[index], 	Colors.white, anim),
 					border: Border.all(color: const  Color.fromARGB(186, 255, 255, 255), width: 3),
+					),
 				),
 			),
-		),
-	);
-},
+		);
+	},
+)
 ```
 Result:
+
 ![enter image description here](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTNucTJncmtpZmdjMTBscm1qdXRnMnVwbWc0c2Fpd2g1azFiczhxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xO7TSGzI0rI0ppsoJb/giphy.gif)
 
 Let's say we don't want the size animation to pass through all the buttons, we can use `index` and `currPage` to achieve desired results:
@@ -122,6 +124,7 @@ buttonBuilder: (anim, backgroundColors, index, currPage) {
 }
 ```
 Result:
+
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDRzajl1MW1qbnNnNncxdDIwdnpldHF1NjR6YXZhMmd1NW1xNHNkeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qCuAiFlyT4cv4hWL7L/giphy.gif)
 
 In this example we disabled the size animation for buttons where `index` is not equal to `currPage`. The color transition remains the same and the animation "passes through" all the buttons. 
@@ -157,10 +160,10 @@ CustomizableSlider(
 						decoration: BoxDecoration(
 							color: Colors.black87, 
 							borderRadius: BorderRadius.circular(10)
-									),
-							),
+						),
 					),
 				),
+			),
 		),
 )
 ``` 
@@ -177,27 +180,26 @@ SizedBox(
 		Color.fromARGB(255, 84, 84, 84),
 		Color.fromARGB(255, 123, 123, 123),
 	],
-
 	pages: const [
 		Icon(
-		Icons.casino_rounded,
-		color: Colors.white,
-		size: 112,
+			Icons.casino_rounded,
+			color: Colors.white,
+			size: 112,
 		),
 		Icon(
-		Icons.yard_rounded,
-		color: Colors.white,
-		size: 112,
+			Icons.yard_rounded,
+			color: Colors.white,
+			size: 112,
 		),
 		Icon(
-		Icons.wine_bar,
-		color: Colors.white,
-		size: 112,
+			Icons.wine_bar,
+			color: Colors.white,
+			size: 112,
 		),
 		Icon(
-		Icons.whatshot_rounded,
-		color: Colors.white,
-		size: 112,
+			Icons.whatshot_rounded,
+			color: Colors.white,
+			size: 112,
 		),
 	],
 	buttonBuilder: (anim, backgroundColors, index, currPage) {
@@ -250,4 +252,5 @@ SizedBox(
 ```
 
 Result:
+
 ![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW9pZDQxNHhzanE4eGxua2o1NzJrOXhldzFrZWVrYW1qMzJreGkwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DEWYEhQDnlO32pRdEl/giphy.gif)
