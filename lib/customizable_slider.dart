@@ -7,9 +7,9 @@ import 'package:flutter/scheduler.dart';
 class CustomizableSlider extends StatefulWidget {
   final List<Widget> pages;
   final List<Color>? backgroundColors;
-  final Widget Function(double anim, List<Color> backgroundColors, int index, int currPage)? anim;
+  final Widget Function(double anim, List<Color> backgroundColors, int index, int currPage)? buttonBuilder;
   final void Function(int idx)? onChange;
-  const CustomizableSlider({super.key, required this.pages, this.backgroundColors, this.anim, this.onChange});
+  const CustomizableSlider({super.key, required this.pages, this.backgroundColors, this.buttonBuilder, this.onChange});
 
   @override
   State<CustomizableSlider> createState() => _CustomizableSliderState();
@@ -163,10 +163,10 @@ class _CustomizableSliderState extends State<CustomizableSlider> with SingleTick
                               gotoPage(i);
                             }, child: Builder(
                               builder: (context) {
-                                if (widget.anim != null) {
-                                  return widget.anim!(normalized, backgroundColors, i, currPage);
+                                if (widget.buttonBuilder != null) {
+                                  return widget.buttonBuilder!(normalized, backgroundColors, i, currPage);
                                 }
-                                return defaultAnim(normalized, backgroundColors, i, currPage);
+                                return defaultBuilder(normalized, backgroundColors, i, currPage);
                               },
                             )),
                           );
@@ -183,11 +183,11 @@ class _CustomizableSliderState extends State<CustomizableSlider> with SingleTick
   }
 }
 
-Widget defaultAnim(double anim, List<Color> backgroundColors, int pageIdx, int currPage) {
+Widget defaultBuilder(double anim, List<Color> backgroundColors, int pageIdx, int currPage) {
   return Container(
-    decoration: const BoxDecoration(color: Color.fromARGB(0, 0, 0, 0), shape: BoxShape.circle),
     width: 80,
     height: 80,
+    color: Colors.transparent, //for clicks to register around the small circle
     child: Center(
       child: Center(
         child: Opacity(
@@ -196,13 +196,7 @@ Widget defaultAnim(double anim, List<Color> backgroundColors, int pageIdx, int c
             width: 10 + anim * 20,
             height: 10,
             decoration: BoxDecoration(
-              color: Color.lerp(
-                  backgroundColors[pageIdx], Colors.white, clampDouble(anim - (currPage == pageIdx ? 0 : 0.8), 0, 1)),
-              border: Border.all(
-                color: const Color.fromARGB(86, 255, 255, 255),
-                width: 5,
-                strokeAlign: BorderSide.strokeAlignOutside,
-              ),
+              color: Color.lerp(Colors.grey.shade900, Colors.grey.shade800, anim),
               borderRadius: BorderRadius.circular(50),
             ),
           ),
